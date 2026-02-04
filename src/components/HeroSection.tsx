@@ -125,8 +125,6 @@ export default function HeroSection({ onEnter }: HeroSectionProps) {
             onClick={onEnter}
             className="flex flex-col items-center gap-2 text-muted-foreground hover:text-secondary transition-colors group"
           >
-            <span className="text-sm tracking-wide">Cliquer pour entrer</span>
-            <ChevronDown className="w-6 h-6 animate-scroll-indicator" />
           </button>
         </motion.div>
       </div>

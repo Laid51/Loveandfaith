@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
+import IntroPage from "./pages/IntroPage";
 import Literature from "./pages/Literature";
 import Music from "./pages/Music";
 import Podcast from "./pages/Podcast";
@@ -21,7 +22,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<IntroPage />} />
+          <Route path="/home" element={<Index />} />
           <Route path="/literature" element={<Literature />} />
           <Route path="/music" element={<Music />} />
           <Route path="/podcast" element={<Podcast />} />

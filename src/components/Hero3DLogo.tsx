@@ -4,47 +4,37 @@ import { useGLTF, Environment, Float, OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
 
 function LogoModel() {
+  const pivot = useRef<THREE.Group>(null);
   const { scene } = useGLTF('/models/Logo_rose.glb');
-  const meshRef = useRef<THREE.Group>(null);
 
-  // Clone the scene for material modifications
-  const clonedScene = useMemo(() => {
-    const clone = scene.clone();
-    clone.traverse((child) => {
-      if (child instanceof THREE.Mesh) {
-        // Create a premium glossy material
-        child.material = new THREE.MeshStandardMaterial({
-          color: new THREE.Color('#c41e3a'), // Deep rose red
-          metalness: 0.4,
-          roughness: 0.3,
-          emissive: new THREE.Color('#3d0a0a'),
-          emissiveIntensity: 0.2,
-        });
-        child.castShadow = true;
-        child.receiveShadow = true;
-      }
-    });
-    return clone;
+  // Center the model once
+  const centeredScene = useMemo(() => {
+    const s = scene.clone(true);
+
+    // IMPORTANT: update matrices before bounding box
+    s.updateWorldMatrix(true, true);
+
+    const box = new THREE.Box3().setFromObject(s);
+    const center = box.getCenter(new THREE.Vector3());
+
+    // Move the model so its bbox center is at origin
+    s.position.x -= center.x;
+    s.position.y -= center.y;
+    s.position.z -= center.z;
+
+    return s;
   }, [scene]);
 
-  // Subtle rotation
-  useFrame((state) => {
-    if (meshRef.current) {
-      meshRef.current.rotation.y = state.clock.elapsedTime * 0.15;
+  useFrame((_, delta) => {
+    if (pivot.current) {
+      pivot.current.rotation.y += delta * 0.85;
     }
   });
 
   return (
-    <Float
-      speed={2}
-      rotationIntensity={0.2}
-      floatIntensity={0.5}
-      floatingRange={[-0.1, 0.1]}
-    >
-      <group ref={meshRef} scale={2.5} position={[0, 0, 0]}>
-        <primitive object={clonedScene} />
-      </group>
-    </Float>
+    <group ref={pivot}>
+      <primitive object={centeredScene} scale={0.15} />
+    </group>
   );
 }
 
@@ -74,7 +64,7 @@ function Lights() {
 
 function Scene() {
   const { camera } = useThree();
-  
+
   useMemo(() => {
     camera.position.set(0, 0, 5);
     camera.lookAt(0, 0, 0);
@@ -104,7 +94,7 @@ export default function Hero3DLogo() {
       <Canvas
         shadows
         dpr={[1, 2]}
-        gl={{ 
+        gl={{
           antialias: true,
           alpha: true,
           powerPreference: "high-performance"
