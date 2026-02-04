@@ -1,0 +1,293 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Love & Faith — Dark Luxury Palette */
+    --background: 0 0% 4%;
+    --foreground: 30 20% 95%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 30 20% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 30 20% 95%;
+
+    /* Deep wine red */
+    --primary: 0 72% 40%;
+    --primary-foreground: 30 20% 95%;
+
+    /* Gold accent */
+    --secondary: 43 74% 49%;
+    --secondary-foreground: 0 0% 4%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 30 10% 60%;
+
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 30 20% 95%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 43 74% 49%;
+
+    --radius: 0.5rem;
+
+    /* Custom Love & Faith tokens */
+    --lf-black: 0 0% 4%;
+    --lf-black-deep: 0 0% 2%;
+    --lf-red: 0 72% 40%;
+    --lf-red-light: 0 65% 50%;
+    --lf-red-glow: 0 80% 35%;
+    --lf-gold: 43 74% 49%;
+    --lf-gold-light: 43 80% 60%;
+    --lf-gold-dark: 43 70% 35%;
+    --lf-white: 30 20% 95%;
+    --lf-white-muted: 30 10% 70%;
+
+    /* Gradients */
+    --gradient-vignette: radial-gradient(ellipse at center, transparent 0%, hsl(0 0% 2%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(43 74% 49%) 0%, hsl(43 80% 60%) 50%, hsl(43 74% 49%) 100%);
+    --gradient-red: linear-gradient(135deg, hsl(0 72% 35%) 0%, hsl(0 72% 45%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 8% / 0.8) 0%, hsl(0 0% 4% / 0.9) 100%);
+
+    /* Shadows */
+    --shadow-gold: 0 0 30px hsl(43 74% 49% / 0.3);
+    --shadow-red: 0 0 30px hsl(0 72% 40% / 0.3);
+    --shadow-soft: 0 10px 40px hsl(0 0% 0% / 0.5);
+
+    /* Typography */
+    --font-serif: 'Playfair Display', Georgia, serif;
+    --font-sans: 'Inter', system-ui, sans-serif;
+
+    /* Sidebar (keeping defaults for compatibility) */
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 0 72% 40%;
+    --sidebar-primary-foreground: 30 20% 95%;
+    --sidebar-accent: 43 74% 49%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 43 74% 49%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 30 20% 95%;
+    --card: 0 0% 6%;
+    --card-foreground: 30 20% 95%;
+    --popover: 0 0% 6%;
+    --popover-foreground: 30 20% 95%;
+    --primary: 0 72% 40%;
+    --primary-foreground: 30 20% 95%;
+    --secondary: 43 74% 49%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 30 10% 60%;
+    --accent: 43 74% 49%;
+    --accent-foreground: 0 0% 4%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 30 20% 95%;
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 43 74% 49%;
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 30 20% 95%;
+    --sidebar-primary: 0 72% 40%;
+    --sidebar-primary-foreground: 30 20% 95%;
+    --sidebar-accent: 43 74% 49%;
+    --sidebar-accent-foreground: 0 0% 4%;
+    --sidebar-border: 0 0% 15%;
+    --sidebar-ring: 43 74% 49%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+  }
+}
+
+@layer components {
+  /* Premium button styles */
+  .btn-gold {
+    @apply relative overflow-hidden px-8 py-4 font-medium tracking-wide;
+    @apply border border-secondary text-secondary;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:shadow-[0_0_30px_hsl(43_74%_49%_/_0.3)];
+    @apply hover:bg-secondary hover:text-secondary-foreground;
+    background: transparent;
+  }
+
+  .btn-gold::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, hsl(43 74% 49% / 0.1) 0%, transparent 100%);
+  }
+
+  .btn-gold:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-outline-gold {
+    @apply relative px-8 py-4 font-medium tracking-wide;
+    @apply border border-secondary/50 text-foreground/80;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:border-secondary hover:text-secondary;
+    background: transparent;
+  }
+
+  /* Card styles */
+  .card-premium {
+    @apply relative overflow-hidden rounded-lg p-6;
+    @apply border border-border/50 bg-card/50 backdrop-blur-sm;
+    @apply transition-all duration-500 ease-out;
+    @apply hover:border-secondary/30 hover:shadow-[0_0_40px_hsl(43_74%_49%_/_0.1)];
+  }
+
+  .card-premium::before {
+    content: '';
+    @apply absolute top-0 left-0 w-full h-px;
+    background: linear-gradient(90deg, transparent, hsl(0 72% 40% / 0.5), transparent);
+  }
+
+  /* Vignette overlay */
+  .vignette {
+    @apply pointer-events-none fixed inset-0 z-10;
+    background: radial-gradient(ellipse at center, transparent 0%, hsl(0 0% 2% / 0.6) 100%);
+  }
+
+  /* Text styles */
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, hsl(43 74% 49%) 0%, hsl(43 80% 65%) 50%, hsl(43 74% 49%) 100%);
+  }
+
+  .text-glow-gold {
+    text-shadow: 0 0 40px hsl(43 74% 49% / 0.5);
+  }
+
+  .text-glow-red {
+    text-shadow: 0 0 40px hsl(0 72% 40% / 0.5);
+  }
+
+  /* Section styles */
+  .section-dark {
+    @apply relative py-24 md:py-32;
+    background: linear-gradient(180deg, hsl(0 0% 4%) 0%, hsl(0 0% 3%) 100%);
+  }
+
+  /* Link hover effect */
+  .link-underline {
+    @apply relative;
+  }
+
+  .link-underline::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-px bg-secondary;
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .link-underline:hover::after {
+    @apply w-full;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(0 0% 4%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsl(0 0% 15%);
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(0 0% 25%);
+  }
+}
+
+@layer utilities {
+  /* Animation utilities */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-soft {
+    animation: pulse-soft 4s ease-in-out infinite;
+  }
+
+  .animate-glow {
+    animation: glow 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes pulse-soft {
+    0%, 100% {
+      opacity: 0.5;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes glow {
+    0%, 100% {
+      filter: drop-shadow(0 0 20px hsl(43 74% 49% / 0.3));
+    }
+    50% {
+      filter: drop-shadow(0 0 30px hsl(43 74% 49% / 0.5));
+    }
+  }
+
+  /* Reduce motion */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  .reduce-motion *, .reduce-motion *::before, .reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
