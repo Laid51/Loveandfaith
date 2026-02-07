@@ -11,6 +11,7 @@ const navLinks = [
   { name: 'Podcast', path: '/podcast' },
   { name: 'T-shirts', path: '/tshirts' },
   { name: 'Community', path: '/community' },
+  { name: 'L&F', path: '/lf' },
   { name: 'About', path: '/about' },
 ];
 
@@ -39,11 +40,10 @@ export default function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled
             ? 'bg-background/80 backdrop-blur-lg border-b border-border/50'
             : 'bg-transparent'
-        }`}
+          }`}
       >
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
@@ -65,11 +65,10 @@ export default function Navigation() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`link-underline text-sm tracking-wide transition-colors ${
-                    location.pathname === link.path
+                  className={`link-underline text-sm tracking-wide transition-colors ${location.pathname === link.path
                       ? 'text-secondary'
                       : 'text-foreground/70 hover:text-foreground'
-                  }`}
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -122,11 +121,10 @@ export default function Navigation() {
                   >
                     <Link
                       to={link.path}
-                      className={`block py-4 text-2xl font-serif border-b border-border/30 transition-colors ${
-                        location.pathname === link.path
+                      className={`block py-4 text-2xl font-serif border-b border-border/30 transition-colors ${location.pathname === link.path
                           ? 'text-secondary'
                           : 'text-foreground hover:text-secondary'
-                      }`}
+                        }`}
                     >
                       {link.name}
                     </Link>

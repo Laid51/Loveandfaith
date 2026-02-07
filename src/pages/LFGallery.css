@@ -1,0 +1,71 @@
+/* L&F Gallery Page Styles */
+
+.lf-gallery-page {
+    position: relative;
+}
+
+/* Pinterest-style Masonry Grid using CSS Columns */
+.masonry-grid-columns {
+    column-gap: 1rem;
+    column-fill: balance;
+}
+
+/* Mobile: 1 column */
+@media (max-width: 767px) {
+    .masonry-grid-columns {
+        column-count: 1;
+    }
+}
+
+/* Tablet: 2 columns */
+@media (min-width: 768px) and (max-width: 1023px) {
+    .masonry-grid-columns {
+        column-count: 2;
+    }
+}
+
+/* Desktop: 3 columns */
+@media (min-width: 1024px) and (max-width: 1439px) {
+    .masonry-grid-columns {
+        column-count: 3;
+    }
+}
+
+/* Large Desktop: 4 columns */
+@media (min-width: 1440px) {
+    .masonry-grid-columns {
+        column-count: 4;
+    }
+}
+
+/* Masonry items */
+.masonry-item {
+    break-inside: avoid;
+    margin-bottom: 1rem;
+    display: inline-block;
+    width: 100%;
+}
+
+/* Smooth scrolling for the page */
+.lf-gallery-page {
+    scroll-behavior: smooth;
+}
+
+/* Custom focus styles for accessibility */
+.lf-gallery-page button:focus-visible,
+.lf-gallery-page [role="button"]:focus-visible {
+    outline: 2px solid hsl(var(--lf-gold));
+    outline-offset: 2px;
+}
+
+/* Image loading state */
+.lf-gallery-page img {
+    background: hsl(var(--lf-black-deep));
+}
+
+/* Modal backdrop blur enhancement */
+@supports (backdrop-filter: blur(20px)) {
+    .lf-gallery-page .modal-backdrop {
+        backdrop-filter: blur(20px);
+    }
+}

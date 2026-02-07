@@ -11,6 +11,7 @@ import Podcast from "./pages/Podcast";
 import Tshirts from "./pages/Tshirts";
 import Community from "./pages/Community";
 import About from "./pages/About";
+import LFGallery from "./pages/LFGallery";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/tshirts" element={<Tshirts />} />
           <Route path="/community" element={<Community />} />
           <Route path="/about" element={<About />} />
+          <Route path="/lf" element={<LFGallery />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
